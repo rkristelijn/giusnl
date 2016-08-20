@@ -38,5 +38,6 @@ Beforehand I want to thank all the resources that I could use to create this epi
   </body>
 </html>
 ````
+Also I took a look at the [HTML5 styleguide](http://www.w3schools.com/html/html5_syntax.asp) and checked the page on [W3 html checker](https://validator.w3.org/).
 ### Step 2b: add bootstrap
 I'm not going to reinvent the wheel for layouts. I don't even want a css. Maybe I need it in future, but for now I'm going to use the *vanilla* Twitter [bootstrap](http://v4-alpha.getbootstrap.com/getting-started/best-practices/)
