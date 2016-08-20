@@ -21,5 +21,22 @@ Beforehand I want to thank all the resources that I could use to create this epi
 - Jono, Tony and Paavo of [Above and Beyond](http://www.aboveandbeyond.nu/): *for letting me code on in tune*
 - [Brackets.io](brackets.io) for a free IDE
 
-# Step 1: Basic HTML5 page
+### Step 2a: Basic HTML5 page
  Kevin Yank wrote an article about the [minimal HTML5 page](https://www.sitepoint.com/a-minimal-html-document-html5-edition/) in 2010 - this is a good read; short summary: type optional in both style and script tags.
+````html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Gius.nl</title>
+    <link rel="stylesheet" href="style.css">
+    
+  </head>
+  <body>
+    <!-- i want to first load the page and then the javascript -->
+      <script src="script.js"></script>
+  </body>
+</html>
+````
+### Step 2b: add bootstrap
+I'm not going to reinvent the wheel for layouts. I don't even want a css. Maybe I need it in future, but for now I'm going to use the *vanilla* Twitter [bootstrap](http://v4-alpha.getbootstrap.com/getting-started/best-practices/)
