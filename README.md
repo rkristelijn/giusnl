@@ -7,11 +7,11 @@ Most probably the site is already running on [Gius.nl](gius.nl)
 Create a good template, with the least amount of code that is as light as possible that delivers the most tidy result.
 
 # Plan
-- **step 0: write this document (current status)**
-- step 1: create a github, stash my code
-- step 2: create a app shell, so it loads my stuff, potentially using HTML5 cache
-- step 3: create some static content
-- step 4: create a rest service to be able to manage my content
+- [x] step 0: write this document
+- [x] step 1: create a github, stash my code
+- [ ] step 2: create a app shell, so it loads my stuff, potentially using HTML5 cache
+- [ ] step 3: create some static content
+- [ ] step 4: create a rest service to be able to manage my content
 
 # Honorable mentions
 Beforehand I want to thank all the resources that I could use to create this epic project;
@@ -20,6 +20,8 @@ Beforehand I want to thank all the resources that I could use to create this epi
 - The [Internet](http://hmpg.net/): *for letting me copy all the code*:
 - Jono, Tony and Paavo of [Above and Beyond](http://www.aboveandbeyond.nu/): *for letting me code on in tune*
 - [Brackets.io](brackets.io) for a free IDE
+- Microsoft for Visual Studio Code
+- Github for keeping my code
 
 ### Step 2a: Basic HTML5 page
  Kevin Yank wrote an article about the [minimal HTML5 page](https://www.sitepoint.com/a-minimal-html-document-html5-edition/) in 2010 - this is a good read; short summary: type optional in both style and script tags.
@@ -107,3 +109,85 @@ In some cases—like mobile—dropdown menus will extend outside the viewport. Y
 Some [downsides of using bootstrap](http://www.zingdesign.com/5-reasons-not-to-use-twitter-bootstrap/) - interesting, but since I'm a developer, bootstrap enables me to make my site responsive. I'm not a designer. not sure if I want to become one either. I don't realy care that my site looks like everyone elses. If it starts to annoy me, I just buy a new [template](https://themeforest.net/search?utf8=%E2%9C%93&term=bootstrap&referrer=search&view=grid&sort=sales&date=&category=site-templates&price_min=&price_max=&sales=&rating_min=4&gclid=CNO5keKi0M4CFcIV0wodRSMDPg)
 ### Step 2c: building the app shell
 Why wait any longer, let's get started and steal some [template](http://v4-alpha.getbootstrap.com/examples/jumbotron/).
+
+### Step 2 revisited
+Thanks for bearing with me, after more than 2 years I'm picking up the task again to review my site. A lot has happened;
+
+1. Browsers changed, support for fetch and service workers
+2. My knowledge changed; mastered Vue, React, Angular.js (1+), jQuery, Angular (2-6+), Node, Nativescript
+3. JavaScript (ECMASCRIPT) changed, added support for rest- and spread operators
+4. I have lot of knowledge to share and I intend to pick up using my domain. 
+
+Unfortunately I'm kinda stuck with PHP as a back-end while I focus on using JavaScript (Node) as a platform. Still looking into this, but for now, I just let Apache serve static content and have no database.
+
+So what is next in this step? 
+
+I decided to go with Vue and create a web server to serve my local content.
+
+1. initialize npm repo `npm init` -> this will create a package.json file:
+
+```json
+{
+  "name": "giusnl",
+  "version": "2.0.0",
+  "description": "Create a good template, with the least amount of code that is as light as possible that delivers the most tidy result.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rkristelijn/giusnl.git"
+  },
+  "keywords": [
+    "HTML",
+    "Performance",
+    "Flexible",
+    "Responsive"
+  ],
+  "author": "Remi Kristelijn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rkristelijn/giusnl/issues"
+  },
+  "homepage": "https://github.com/rkristelijn/giusnl#readme"
+}
+```
+
+2. Add a webserver: `npm i --save express path`
+3. create `/index.js`:
+
+```javascript
+const path = require('path');
+const express = require('express');
+
+const app = express();
+const PORT = 3000;
+
+const staticPath = path.join(__dirname, '/');
+app.use(express.static(staticPath));
+
+app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}`);
+});
+```
+
+4. Add `start` script in `/package.json`
+
+```json
+...
+"scripts": {
+    "start": "node index.js", /* << this one */
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+...
+```
+
+5. Run `npm start -s`
+
+`-s` means `--silent` to let npm not show
+```bash
+
+> giusnl@2.0.0 start /home/pi/giusnl
+> node index.js
+```
