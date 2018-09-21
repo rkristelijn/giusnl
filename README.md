@@ -9,7 +9,7 @@ Create a good template, with the least amount of code that is as light as possib
 # Plan
 - [x] step 0: write this document
 - [x] step 1: create a github, stash my code
-- [ ] step 2: create a app shell, so it loads my stuff, potentially using HTML5 cache
+- [x] step 2: create a app shell, so it loads my stuff, potentially using HTML5 cache
 - [ ] step 3: create some static content
 - [ ] step 4: create a rest service to be able to manage my content
 
@@ -191,3 +191,10 @@ app.listen(PORT, () => {
 > giusnl@2.0.0 start /home/pi/giusnl
 > node index.js
 ```
+
+6. Before commiting, we need to let git know that `/node_modules/` should be ignored:
+
+`echo node_modules >> .gitignore`
+
+# Step 3
+In this step I'm going to get rid of jQuery (for bootstrap) and implement Vue. Possibly use markdown for my articles.
